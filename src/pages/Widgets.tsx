@@ -1,7 +1,6 @@
 import Navbar from "../components/navbar";
 import "../styles/button.scss";
 import chats from "../chats";
-import Main from "../components/main";
 import "../styles/widgets.scss";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef } from "react";
@@ -23,11 +22,36 @@ const WidgetsPage: React.FC<WidgetsPageProps> = ({ id }) => {
       </div>
       <div className="container2">
         <div className="widget">
-          <Main />
         </div>
       </div>
     </>
   );
 };
+
+// import React, { useState } from 'react';
+// import Componente1 from './Componente1';
+// import Componente2 from './Componente2';
+// import Componente3 from './Componente3';
+
+// const App = () => {
+//   const [mostrarComponente, setMostrarComponente] = useState(null);
+
+//   const cambiarComponente = (componente) => {
+//     setMostrarComponente(componente);
+//   };
+
+//   return (
+//     <div>
+//       <button onClick={() => cambiarComponente(<Componente1 />)}>Mostrar Componente 1</button>
+//       <button onClick={() => cambiarComponente(<Componente2 />)}>Mostrar Componente 2</button>
+//       <button onClick={() => cambiarComponente(<Componente3 />)}>Mostrar Componente 3</button>
+
+//       {mostrarComponente}
+//     </div>
+//   );
+// }
+
+// export default App;
+
 
 export default WidgetsPage;

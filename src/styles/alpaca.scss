@@ -1,0 +1,23 @@
+.widget {
+  border: 1px solid red;
+  height: 40rem;
+  width: 40rem;
+}
+
+.main-container {
+  border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+}
+
+.emulation-menu {
+  list-style: none;
+  li {
+    cursor: pointer;
+    margin: 0 1rem;
+    padding: 0.5rem;
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
