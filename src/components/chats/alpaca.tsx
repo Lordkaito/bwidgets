@@ -1,7 +1,6 @@
 import Navbar from "../../components/navbar";
 import { useParams } from "react-router-dom";
 import "../../styles/alpaca.scss";
-import EmulatedMenu from "../emulatedMenu";
 import { useEffect, useRef, useState } from "react";
 import Message from "../../helpers/messageClass";
 interface AlpacaProps {}
@@ -45,11 +44,11 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       <div>
         <h1>Alpaca</h1>
       </div>
-      <div className="main-container">
+      <div className="alpaca-main-container">
         {/* <div className="container"></div> */}
         <div className="container2">
           <div className="emulatedMenu">
-            <ul className="emulation-menu">
+            <ul className="alpaca-emulation-menu">
               <li onClick={handleClick}>Emulate Message</li>
               <li>Emulate Emulate Sub</li>
               <li>Emulate Follow</li>
@@ -58,7 +57,7 @@ const Alpaca: React.FC<AlpacaProps> = () => {
               <li>Emulate Tip</li>
             </ul>
           </div>
-          <div className="widget"></div>
+          <div className="alpaca-widget"></div>
         </div>
       </div>
     </>
