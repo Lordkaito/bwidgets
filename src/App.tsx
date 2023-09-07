@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.scss";
-import WidgetsPage from "./pages/Widgets";
 import HomePage from "./pages/HomePage";
 import routesToChatComponents from "./routes";
 
@@ -18,7 +17,7 @@ const App: React.FC<AppProps> = ({ id }) => {
             <Route
               key={index}
               path={`/widget/${item.id}`}
-              element={<item.component />}
+              element={<item.component hasEvents={item.hasEvents.status} eventsToEmulate={item.hasEvents} />}
             />
           );
         })}

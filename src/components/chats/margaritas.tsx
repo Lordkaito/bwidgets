@@ -6,10 +6,12 @@ import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
-interface AlpacaProps {}
+interface AlpacaProps {
+  hasEvents: {};
+}
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Margaritas: React.FC<AlpacaProps> = () => {
+const Margaritas: React.FC<AlpacaProps> = (hasEvents) => {
   class AlpacaMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);

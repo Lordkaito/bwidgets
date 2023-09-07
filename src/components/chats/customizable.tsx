@@ -1,26 +1,27 @@
 import Navbar from "../../components/navbar";
-import { useParams } from "react-router-dom";
 import "../../styles/customizable.scss";
 import { useEffect, useRef, useState } from "react";
 import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
-interface AlpacaProps {}
+interface AlpacaProps {
+  hasEvents: boolean;
+  eventsToEmulate: {};
+}
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Customizable: React.FC<AlpacaProps> = () => {
-  class AlpacaMessage extends MessageClass {
+const Customizable: React.FC<AlpacaProps> = ({
+  hasEvents,
+  eventsToEmulate,
+}) => {
+  class CustomizableMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
     }
 
     inits() {
-      if (this.listener === "message") {
-        return this.createMainContainer();
-      } else {
-        return this.createEventContainer();
-      }
+      return this.createMainContainer();
     }
 
     async createMainContainer() {
@@ -30,63 +31,36 @@ const Customizable: React.FC<AlpacaProps> = () => {
       superMain.classList.add("customizable-super-main-container");
       let containerToRender = document.createElement("div");
       containerToRender.classList.add("customizable-container-to-render");
-      let origami = document.createElement("div");
-      origami.classList.add("customizable-origami");
-      origami.innerHTML = `
-      <div class="customizable-container">
-        <div class="customizable-circle">
-          <svg class="customizable-circulo" viewBox="0 0 100 100">
-            <circle class="customizable-circulo-animado" cx="50" cy="50" r="45"></circle>
-          </svg>
-          <img class="customizable-role customizable-streamer" src="https://i.postimg.cc/T112f9BN/customizable.png"></div><div class="customizable-ori-dots"><div class="customizable-dot"></div><div class="customizable-dot"></div><div class="customizable-dot"></div></div><div class="customizable-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="customizable-luna">
-        </div>
-      </div>
-      `;
       const mainContainer = document.createElement("div");
       mainContainer.innerText = "Customizable";
       mainContainer.classList.add("customizable-main-container");
       mainContainer.innerHTML = `
-      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="customizable-brillo">
-      <div class="customizable-username-info-container">
-        <div class="customizable-prons-text customizable-pronouns" style="display: flex;">
-          <span class="customizable-prons customizable-prons-pink">he/him</span>
-        </div>
-        <div class="customizable-username-info">
-          <span class="customizable-username-badges" style="display: none;">
-            <img class="customizable-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
-            <img class="customizable-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
-          </span>
-          <span class="customizable-capitalize-user">Lordkaito_</span>
+      <div class="customizable-circle" style="background-color: black;">
+      </div>
+      <div class="customizable-message-container">
+        <div class="customizable-message-icon-container">
+          <div class="customizable-rendered-text streamer-text">
+            <p class="customizable-text" style="color: rgb(0, 0, 255);">${
+              customMessage == "" ? selectRandomMessage() : customMessage
+            }</p>
+          </div>
         </div>
       </div>
-      <div class="customizable-message-container customizable-pink">
-          <div class="customizable-bigcontainer">
-            <div class="customizable-dots-container">
-              <div class="customizable-dots">
-                <div class="customizable-dot"></div>
-                <div class="customizable-dot"></div>
-                <div class="customizable-dot"></div>
-              </div>
-            </div>
-            <div class="customizable-circless">
-              <svg class="customizable-circulo" viewBox="0 0 100 100">
-                <circle class="customizable-circulo-animado customizable-yellow" cx="50" cy="50" r="20">
-                </circle>
-              </svg>
-              <img src="https://i.postimg.cc/431XcqgF/corachikito.png">
-            </div>
-          </div>
-          <div class="customizable-message-icon-container">
-            <div class="customizable-rendered-text customizable-text-color customizable-streamer-text">
-              <p class="customizable-text">${
-                customMessage == "" ? selectRandomMessage() : customMessage
-              }</p>
-            </div>
-          </div>
+      <div class="customizable-pronouns" style="opacity: 1;">
+        <span class="customizable-prons" style="color: rgb(251, 97, 131);">he/him</span>
       </div>
       `;
-      superMain.appendChild(origami);
+      let usernameInfo = document.createElement("div");
+      usernameInfo.innerHTML = `
+      <div class="customizable-username-info" style="background: linear-gradient(90deg, blue 0%, red 100%);">
+        <span class="customizable-username-badges">
+          <img class="customizable-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
+          <img class="customizable-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
+        </span>
+        <span class="customizable-capitalize-user" style="color: rgb(204, 204, 204);">Lordkaito_</span>
+      </div>`;
       superMain.appendChild(mainContainer);
+      superMain.appendChild(usernameInfo);
 
       return superMain;
     }
@@ -108,6 +82,48 @@ const Customizable: React.FC<AlpacaProps> = () => {
   let [customMessage, setCustomMessage] = useState("");
   let [currentRandomMessage, setCurrentRandomMessage] = useState(0);
 
+  const handleBackgroundColor = (e: any) => {
+    let main = document.querySelectorAll(".customizable-widget");
+    main.forEach((element) => {
+      element.setAttribute("style", `background-color: ${e.target.value}`);
+    });
+  };
+
+  const handleMainContainerColor = (e: any) => {
+    let main = document.querySelectorAll(".customizable-main-container");
+    main.forEach((element) => {
+      element.setAttribute("style", `background-color: ${e.target.value}`);
+    });
+  };
+
+  const handleTextColor = (e: any) => {
+    let main = document.querySelectorAll(".customizable-text");
+    main.forEach((element) => {
+      element.setAttribute("style", `color: ${e.target.value}`);
+    });
+  };
+
+  const handleUsernameColor = (e: any) => {
+    let main = document.querySelectorAll(".customizable-capitalize-user");
+    main.forEach((element) => {
+      element.setAttribute("style", `color: ${e.target.value}`);
+    });
+  };
+
+  const handleUsernameContainerColor = (e: any) => {
+    let main = document.querySelectorAll(".customizable-username-info");
+    main.forEach((element) => {
+      element.setAttribute("style", `background: ${e.target.value}`);
+    });
+  };
+
+  const handleThingyColor = (e: any) => {
+    let main = document.querySelectorAll(".customizable-circle");
+    main.forEach((element) => {
+      element.setAttribute("style", `background-color: ${e.target.value}`);
+    });
+  };
+
   const selectRandomMessage = () => {
     setCurrentRandomMessage(currentRandomMessage + 1);
     if (randomMessages[currentRandomMessage] === undefined) {
@@ -118,7 +134,7 @@ const Customizable: React.FC<AlpacaProps> = () => {
   };
 
   const handleClick = async (event: any) => {
-    let MessageEvent = new AlpacaMessage(
+    let MessageEvent = new CustomizableMessage(
       event.event,
       event.listener,
       customMessage
@@ -127,6 +143,7 @@ const Customizable: React.FC<AlpacaProps> = () => {
     let container = document.querySelector(".customizable-widget");
     container?.appendChild(main);
     main.scrollIntoView({ behavior: "smooth" });
+    setCustomMessage("");
   };
 
   const handleKeyUp = (e: any) => {
@@ -148,36 +165,47 @@ const Customizable: React.FC<AlpacaProps> = () => {
         <div className="container">
           <div className="emulatedMenu">
             <ul className="emulation-menu">
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.subscriber)}
-              >
-                Emulate Emulate Sub
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.follower)}
-              >
-                Emulate Follow
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.cheer)}
-              >
-                Emulate Cheer
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.tip)}
-              >
-                Emulate Tip
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.message)}
-              >
-                Emulate Message
-              </li>
+              {hasEvents ? (
+                <>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.subscriber)}
+                  >
+                    Emulate Sub
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.follower)}
+                  >
+                    Emulate Follow
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.cheer)}
+                  >
+                    Emulate Cheer
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.tip)}
+                  >
+                    Emulate Tip
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.message)}
+                  >
+                    Emulate Message
+                  </li>
+                </>
+              ) : (
+                <li
+                  className="emulation-button"
+                  onClick={() => handleClick(events.message)}
+                >
+                  Emulate Message
+                </li>
+              )}
             </ul>
             <input
               onChange={(e) => setCustomMessage(e.target.value)}
@@ -185,6 +213,12 @@ const Customizable: React.FC<AlpacaProps> = () => {
               type="text"
               placeholder="Type a message"
             />
+            <input type="color" onChange={handleBackgroundColor} />
+            <input type="color" onChange={handleMainContainerColor} />
+            <input type="color" onChange={handleTextColor} />
+            <input type="color" onChange={handleUsernameColor} />
+            <input type="color" onChange={handleUsernameContainerColor} />
+            <input type="color" onChange={handleThingyColor} />
           </div>
           <div className="customizable-widget"></div>
         </div>

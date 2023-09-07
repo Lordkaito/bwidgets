@@ -6,10 +6,12 @@ import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
-interface TulipanesProps {}
+interface TulipanesProps {
+  hasEvents: {};
+}
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Tulipanes: React.FC<TulipanesProps> = () => {
+const Tulipanes: React.FC<TulipanesProps> = (hasEvents) => {
   class TulipanesMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
