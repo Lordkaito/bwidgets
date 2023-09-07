@@ -1,11 +1,11 @@
 import Navbar from "../components/navbar";
 import "../styles/button.scss";
-import chats from "../chats";
+import { chats } from "../chats";
 import "../styles/widgets.scss";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef } from "react";
 interface WidgetsPageProps {
-  id: string;
+  id?: string;
 }
 
 // widgets will receive id for the widget itself, comming from the button, comming from the card
@@ -21,8 +21,7 @@ const WidgetsPage: React.FC<WidgetsPageProps> = ({ id }) => {
         <h1>Widgets</h1>
       </div>
       <div className="container2">
-        <div className="widget">
-        </div>
+        <div className="widget"></div>
       </div>
     </>
   );
@@ -52,6 +51,5 @@ const WidgetsPage: React.FC<WidgetsPageProps> = ({ id }) => {
 // }
 
 // export default App;
-
 
 export default WidgetsPage;

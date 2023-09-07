@@ -1,5 +1,5 @@
 const removeEvent = (mainContainer: HTMLElement) => {
-  console.log(mainContainer, event)
+  console.log(mainContainer, event);
   const elem = mainContainer;
 
   elem.style.animationName = "removeMessage";

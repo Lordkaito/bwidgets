@@ -1,3 +1,22 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+.main-container {
+  // border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.container {
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
 }

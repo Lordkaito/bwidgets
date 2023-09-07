@@ -1,21 +1,16 @@
 import "../styles/cards.scss";
 import Button from "./button";
 interface CardProps {
-  id: string;
+  id: number;
+  name: string;
 }
 
-const Cards: React.FC<CardProps> = ({id}) => {
+const Cards: React.FC<CardProps> = ({ id, name }) => {
   return (
-    <div className="card">
-      {/* <img src={image} alt={title} /> */}
-      <div className="card-body">
-        {/* <h2>{title}</h2> */}
-        {/* <p>{description}</p> */}
-        {/* <a href={link}>Read more</a> */}
-        individual card
-      </div>
-      {/* this is the button to show the individual widget */}
-      {/* <Button /> */}
+    <div className="ind-card">
+      <div className="card-body">{name}</div>
+      <Button id={id}/>
+
     </div>
   );
 };

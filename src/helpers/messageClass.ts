@@ -1,4 +1,6 @@
 import { PRONOUNS_API_BASE } from "./apis";
+import fieldData from "../components/chats/json/fieldData.alpaca.json";
+import React from "react";
 
 const roles: string[] = ["streamer", "mod", "vip", "subscriber", "viewer"];
 const priorities: any = {
@@ -9,7 +11,7 @@ const priorities: any = {
   viewer: 5,
 };
 
-export default class Message {
+class MessageClass {
   event?: any;
   listener?: string;
 
@@ -18,15 +20,59 @@ export default class Message {
     this.listener = listener;
   }
 
-  get init() {
-    return this.eventType();
-  }
+  // get init() {
+  //   return this.eventType();
+  // }
 
   get name() {
     const name = this.event.name;
     const trimmed = this.trimName(name);
 
     return trimmed;
+  }
+
+  get text() {
+    switch (this.event.type) {
+      case "message":
+        return;
+      case "tip":
+        let tipText = fieldData.tipText.value;
+        if (tipText !== "") {
+          return tipText
+            .replace("(amount)", this.amount)
+            .replace("(user)", this.name);
+        }
+        return "Thanks for the tip!";
+      case "cheer":
+        let cheerText = fieldData.cheerText.value;
+        if (cheerText !== "") {
+          return cheerText
+            .replace("(amount)", this.amount)
+            .replace("(user)", this.name);
+        }
+        return "Thanks for the cheer!";
+      case "follower":
+        let followText = fieldData.followText.value;
+        if (followText !== "") {
+          return followText.replace("(user)", this.name);
+        }
+        return "Thanks for the follow!";
+      case "subscriber":
+        let subText = fieldData.subText.value;
+        if (subText !== "") {
+          return subText.replace("(user)", this.name);
+        }
+        if (this.event.gifted) {
+          let giftSubText = fieldData.giftSubText.value;
+          if (giftSubText !== "") {
+            return giftSubText
+              .replace("(amount)", this.amount)
+              .replace("(sender)", this.event.sender || this.name);
+          }
+          return "Thanks for the gift sub!";
+        }
+        return "Thanks for the sub!";
+    }
   }
 
   trimName(name: string) {
@@ -183,7 +229,7 @@ export default class Message {
   }
 
   get prueba() {
-    return console.log('asdfasdf');
+    return console.log("asdfasdf");
   }
 
   async customEmotes() {
@@ -201,14 +247,6 @@ export default class Message {
     return customEmotesArr;
   }
 
-  eventType() {
-    if (this.listener === "message") {
-      return this.buildMessage();
-    } else {
-      return this.buildEvent();
-    }
-  }
-
   async buildMessage() {
     return await this.createMainContainerElement();
   }
@@ -223,7 +261,6 @@ export default class Message {
 
   async createMainEventContainer() {
     const mainContainer = document.createElement("div");
-    mainContainer.classList.add("main-container");
     return mainContainer;
   }
 
@@ -233,3 +270,5 @@ export default class Message {
     return mainContainer;
   }
 }
+
+export default MessageClass;

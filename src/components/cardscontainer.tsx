@@ -1,9 +1,11 @@
 import Cards from "./cards";
 import "../styles/cardscontainer.scss";
 import Button from "./button";
+// import * as Components from "../imports";
+import routesToChatComponents from "../routes";
 interface CardsContainerProps {}
 
-let cards = [{id: "1"}, {id: "2"}, {id: "3"}, {id: "4"}];
+let cards = routesToChatComponents;
 const CardsContainer: React.FC<CardsContainerProps> = () => {
   return (
     <div className="cards-container">
@@ -12,10 +14,9 @@ const CardsContainer: React.FC<CardsContainerProps> = () => {
       <div className="cards">
         {cards.map((card) => {
           return (
-            <>
-              <Cards id={card.id} />
-              <Button id={card.id} />
-            </>
+            <div className="card" key={card.id}>
+              <Cards id={card.id} name={card.name} />
+            </div>
           );
         })}
       </div>

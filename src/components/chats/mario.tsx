@@ -1,6 +1,6 @@
 import Navbar from "../../components/navbar";
 import { useParams } from "react-router-dom";
-import "../../styles/alpaca.scss";
+import "../../styles/mario.scss";
 import { useEffect, useRef, useState } from "react";
 import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
@@ -9,7 +9,7 @@ import React from "react";
 interface AlpacaProps {}
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Alpaca: React.FC<AlpacaProps> = () => {
+const Mario: React.FC<AlpacaProps> = () => {
   class AlpacaMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
@@ -27,58 +27,58 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       // let event = this.event;
       // let listener = this.listener;
       let superMain = await super.createMainContainerElement();
-      superMain.classList.add("alpaca-super-main-container");
+      superMain.classList.add("mario-super-main-container");
       let containerToRender = document.createElement("div");
-      containerToRender.classList.add("alpaca-container-to-render");
+      containerToRender.classList.add("mario-container-to-render");
       let origami = document.createElement("div");
-      origami.classList.add("alpaca-origami");
+      origami.classList.add("mario-origami");
       origami.innerHTML = `
-      <div class="alpaca-container">
-        <div class="alpaca-circle">
-          <svg class="alpaca-circulo" viewBox="0 0 100 100">
-            <circle class="alpaca-circulo-animado" cx="50" cy="50" r="45"></circle>
+      <div class="mario-container">
+        <div class="mario-circle">
+          <svg class="mario-circulo" viewBox="0 0 100 100">
+            <circle class="mario-circulo-animado" cx="50" cy="50" r="45"></circle>
           </svg>
-          <img class="alpaca-role alpaca-streamer" src="https://i.postimg.cc/T112f9BN/alpaca.png"></div><div class="alpaca-ori-dots"><div class="alpaca-dot"></div><div class="alpaca-dot"></div><div class="alpaca-dot"></div></div><div class="alpaca-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="alpaca-luna">
+          <img class="mario-role mario-streamer" src="https://i.postimg.cc/T112f9BN/mario.png"></div><div class="mario-ori-dots"><div class="mario-dot"></div><div class="mario-dot"></div><div class="mario-dot"></div></div><div class="mario-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="mario-luna">
         </div>
       </div>
       `;
       const mainContainer = document.createElement("div");
-      mainContainer.innerText = "Alpaca";
-      mainContainer.classList.add("alpaca-main-container");
+      mainContainer.innerText = "Mario";
+      mainContainer.classList.add("mario-main-container");
       mainContainer.innerHTML = `
-      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="alpaca-brillo">
-      <div class="alpaca-username-info-container">
-        <div class="alpaca-prons-text alpaca-pronouns" style="display: flex;">
-          <span class="alpaca-prons alpaca-prons-pink">he/him</span>
+      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="mario-brillo">
+      <div class="mario-username-info-container">
+        <div class="mario-prons-text mario-pronouns" style="display: flex;">
+          <span class="mario-prons mario-prons-pink">he/him</span>
         </div>
-        <div class="alpaca-username-info">
-          <span class="alpaca-username-badges" style="display: none;">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
+        <div class="mario-username-info">
+          <span class="mario-username-badges" style="display: none;">
+            <img class="mario-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
+            <img class="mario-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
           </span>
-          <span class="alpaca-capitalize-user">Lordkaito_</span>
+          <span class="mario-capitalize-user">Lordkaito_</span>
         </div>
       </div>
-      <div class="alpaca-message-container alpaca-pink">
-          <div class="alpaca-bigcontainer">
-            <div class="alpaca-dots-container">
-              <div class="alpaca-dots">
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
+      <div class="mario-message-container mario-pink">
+          <div class="mario-bigcontainer">
+            <div class="mario-dots-container">
+              <div class="mario-dots">
+                <div class="mario-dot"></div>
+                <div class="mario-dot"></div>
+                <div class="mario-dot"></div>
               </div>
             </div>
-            <div class="alpaca-circless">
-              <svg class="alpaca-circulo" viewBox="0 0 100 100">
-                <circle class="alpaca-circulo-animado alpaca-yellow" cx="50" cy="50" r="20">
+            <div class="mario-circless">
+              <svg class="mario-circulo" viewBox="0 0 100 100">
+                <circle class="mario-circulo-animado mario-yellow" cx="50" cy="50" r="20">
                 </circle>
               </svg>
               <img src="https://i.postimg.cc/431XcqgF/corachikito.png">
             </div>
           </div>
-          <div class="alpaca-message-icon-container">
-            <div class="alpaca-rendered-text alpaca-text-color alpaca-streamer-text">
-              <p class="alpaca-text">${
+          <div class="mario-message-icon-container">
+            <div class="mario-rendered-text mario-text-color mario-streamer-text">
+              <p class="mario-text">${
                 customMessage == "" ? selectRandomMessage() : customMessage
               }</p>
             </div>
@@ -93,13 +93,13 @@ const Alpaca: React.FC<AlpacaProps> = () => {
 
     async createEventContainer() {
       let eventContainer = await super.createMainEvent();
-      eventContainer.classList.add("alpaca-event-container");
+      eventContainer.classList.add("mario-event-container");
       eventContainer.innerHTML = `
-      <div class="alpaca-fungi-container">
-        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="alpaca-moon">
-        <div class="alpaca-event-and-name-container">
-          <p class="alpaca-event-text">HI</p>
-          <p class="alpaca-event-name">${this.text}</p>
+      <div class="mario-fungi-container">
+        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="mario-moon">
+        <div class="mario-event-and-name-container">
+          <p class="mario-event-text">HI</p>
+          <p class="mario-event-name">${this.text}</p>
         </div>
       </div>`;
       return eventContainer;
@@ -124,7 +124,7 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       customMessage
     );
     let main = await MessageEvent.inits();
-    let container = document.querySelector(".alpaca-widget");
+    let container = document.querySelector(".mario-widget");
     container?.appendChild(main);
     main.scrollIntoView({ behavior: "smooth" });
   };
@@ -141,13 +141,13 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       <Navbar />
 
       <div>
-        <h1>Alpaca</h1>
+        <h1>Mario</h1>
       </div>
       <div className="main-container">
         {/* <div className="container"></div> */}
         <div className="container">
           <div className="emulatedMenu">
-            <ul className="alpaca-emulation-menu">
+            <ul className="emulation-menu">
               <li
                 className="emulation-button"
                 onClick={() => handleClick(events.subscriber)}
@@ -186,11 +186,11 @@ const Alpaca: React.FC<AlpacaProps> = () => {
               placeholder="Type a message"
             />
           </div>
-          <div className="alpaca-widget"></div>
+          <div className="mario-widget"></div>
         </div>
       </div>
     </>
   );
 };
 
-export default Alpaca;
+export default Mario;

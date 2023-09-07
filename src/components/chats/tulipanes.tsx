@@ -1,16 +1,16 @@
 import Navbar from "../../components/navbar";
 import { useParams } from "react-router-dom";
-import "../../styles/alpaca.scss";
+import "../../styles/tulipanes.scss";
 import { useEffect, useRef, useState } from "react";
 import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
-interface AlpacaProps {}
+interface TulipanesProps {}
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Alpaca: React.FC<AlpacaProps> = () => {
-  class AlpacaMessage extends MessageClass {
+const Tulipanes: React.FC<TulipanesProps> = () => {
+  class TulipanesMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
     }
@@ -27,58 +27,58 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       // let event = this.event;
       // let listener = this.listener;
       let superMain = await super.createMainContainerElement();
-      superMain.classList.add("alpaca-super-main-container");
+      superMain.classList.add("tulipanes-super-main-container");
       let containerToRender = document.createElement("div");
-      containerToRender.classList.add("alpaca-container-to-render");
+      containerToRender.classList.add("tulipanes-container-to-render");
       let origami = document.createElement("div");
-      origami.classList.add("alpaca-origami");
+      origami.classList.add("tulipanes-origami");
       origami.innerHTML = `
-      <div class="alpaca-container">
-        <div class="alpaca-circle">
-          <svg class="alpaca-circulo" viewBox="0 0 100 100">
-            <circle class="alpaca-circulo-animado" cx="50" cy="50" r="45"></circle>
+      <div class="tulipanes-container">
+        <div class="tulipanes-circle">
+          <svg class="tulipanes-circulo" viewBox="0 0 100 100">
+            <circle class="tulipanes-circulo-animado" cx="50" cy="50" r="45"></circle>
           </svg>
-          <img class="alpaca-role alpaca-streamer" src="https://i.postimg.cc/T112f9BN/alpaca.png"></div><div class="alpaca-ori-dots"><div class="alpaca-dot"></div><div class="alpaca-dot"></div><div class="alpaca-dot"></div></div><div class="alpaca-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="alpaca-luna">
+          <img class="tulipanes-role tulipanes-streamer" src="https://i.postimg.cc/T112f9BN/tulipanes.png"></div><div class="tulipanes-ori-dots"><div class="tulipanes-dot"></div><div class="tulipanes-dot"></div><div class="tulipanes-dot"></div></div><div class="tulipanes-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="tulipanes-luna">
         </div>
       </div>
       `;
       const mainContainer = document.createElement("div");
-      mainContainer.innerText = "Alpaca";
-      mainContainer.classList.add("alpaca-main-container");
+      mainContainer.innerText = "Tulipanes";
+      mainContainer.classList.add("tulipanes-main-container");
       mainContainer.innerHTML = `
-      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="alpaca-brillo">
-      <div class="alpaca-username-info-container">
-        <div class="alpaca-prons-text alpaca-pronouns" style="display: flex;">
-          <span class="alpaca-prons alpaca-prons-pink">he/him</span>
+      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="tulipanes-brillo">
+      <div class="tulipanes-username-info-container">
+        <div class="tulipanes-prons-text tulipanes-pronouns" style="display: flex;">
+          <span class="tulipanes-prons tulipanes-prons-pink">he/him</span>
         </div>
-        <div class="alpaca-username-info">
-          <span class="alpaca-username-badges" style="display: none;">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
+        <div class="tulipanes-username-info">
+          <span class="tulipanes-username-badges" style="display: none;">
+            <img class="tulipanes-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
+            <img class="tulipanes-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
           </span>
-          <span class="alpaca-capitalize-user">Lordkaito_</span>
+          <span class="tulipanes-capitalize-user">Lordkaito_</span>
         </div>
       </div>
-      <div class="alpaca-message-container alpaca-pink">
-          <div class="alpaca-bigcontainer">
-            <div class="alpaca-dots-container">
-              <div class="alpaca-dots">
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
+      <div class="tulipanes-message-container tulipanes-pink">
+          <div class="tulipanes-bigcontainer">
+            <div class="tulipanes-dots-container">
+              <div class="tulipanes-dots">
+                <div class="tulipanes-dot"></div>
+                <div class="tulipanes-dot"></div>
+                <div class="tulipanes-dot"></div>
               </div>
             </div>
-            <div class="alpaca-circless">
-              <svg class="alpaca-circulo" viewBox="0 0 100 100">
-                <circle class="alpaca-circulo-animado alpaca-yellow" cx="50" cy="50" r="20">
+            <div class="tulipanes-circless">
+              <svg class="tulipanes-circulo" viewBox="0 0 100 100">
+                <circle class="tulipanes-circulo-animado tulipanes-yellow" cx="50" cy="50" r="20">
                 </circle>
               </svg>
               <img src="https://i.postimg.cc/431XcqgF/corachikito.png">
             </div>
           </div>
-          <div class="alpaca-message-icon-container">
-            <div class="alpaca-rendered-text alpaca-text-color alpaca-streamer-text">
-              <p class="alpaca-text">${
+          <div class="tulipanes-message-icon-container">
+            <div class="tulipanes-rendered-text tulipanes-text-color tulipanes-streamer-text">
+              <p class="tulipanes-text">${
                 customMessage == "" ? selectRandomMessage() : customMessage
               }</p>
             </div>
@@ -93,13 +93,13 @@ const Alpaca: React.FC<AlpacaProps> = () => {
 
     async createEventContainer() {
       let eventContainer = await super.createMainEvent();
-      eventContainer.classList.add("alpaca-event-container");
+      eventContainer.classList.add("tulipanes-event-container");
       eventContainer.innerHTML = `
-      <div class="alpaca-fungi-container">
-        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="alpaca-moon">
-        <div class="alpaca-event-and-name-container">
-          <p class="alpaca-event-text">HI</p>
-          <p class="alpaca-event-name">${this.text}</p>
+      <div class="tulipanes-fungi-container">
+        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="tulipanes-moon">
+        <div class="tulipanes-event-and-name-container">
+          <p class="tulipanes-event-text">HI</p>
+          <p class="tulipanes-event-name">${this.text}</p>
         </div>
       </div>`;
       return eventContainer;
@@ -118,13 +118,13 @@ const Alpaca: React.FC<AlpacaProps> = () => {
   };
 
   const handleClick = async (event: any) => {
-    let MessageEvent = new AlpacaMessage(
+    let MessageEvent = new TulipanesMessage(
       event.event,
       event.listener,
       customMessage
     );
     let main = await MessageEvent.inits();
-    let container = document.querySelector(".alpaca-widget");
+    let container = document.querySelector(".tulipanes-widget");
     container?.appendChild(main);
     main.scrollIntoView({ behavior: "smooth" });
   };
@@ -141,13 +141,13 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       <Navbar />
 
       <div>
-        <h1>Alpaca</h1>
+        <h1>Tulipanes</h1>
       </div>
       <div className="main-container">
         {/* <div className="container"></div> */}
         <div className="container">
           <div className="emulatedMenu">
-            <ul className="alpaca-emulation-menu">
+            <ul className="emulation-menu">
               <li
                 className="emulation-button"
                 onClick={() => handleClick(events.subscriber)}
@@ -186,11 +186,11 @@ const Alpaca: React.FC<AlpacaProps> = () => {
               placeholder="Type a message"
             />
           </div>
-          <div className="alpaca-widget"></div>
+          <div className="tulipanes-widget"></div>
         </div>
       </div>
     </>
   );
 };
 
-export default Alpaca;
+export default Tulipanes;

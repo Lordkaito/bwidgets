@@ -1,4 +1,4 @@
-let fieldData: any
+let fieldData: any;
 
 const ignoreMessagesStartingWith = (message: string) => {
   let ignoreList: Array<string> = [];

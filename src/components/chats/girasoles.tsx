@@ -1,6 +1,6 @@
 import Navbar from "../../components/navbar";
 import { useParams } from "react-router-dom";
-import "../../styles/alpaca.scss";
+import "../../styles/girasoles.scss";
 import { useEffect, useRef, useState } from "react";
 import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
@@ -9,7 +9,7 @@ import React from "react";
 interface AlpacaProps {}
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Alpaca: React.FC<AlpacaProps> = () => {
+const Girasoles: React.FC<AlpacaProps> = () => {
   class AlpacaMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
@@ -27,58 +27,58 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       // let event = this.event;
       // let listener = this.listener;
       let superMain = await super.createMainContainerElement();
-      superMain.classList.add("alpaca-super-main-container");
+      superMain.classList.add("girasoles-super-main-container");
       let containerToRender = document.createElement("div");
-      containerToRender.classList.add("alpaca-container-to-render");
+      containerToRender.classList.add("girasoles-container-to-render");
       let origami = document.createElement("div");
-      origami.classList.add("alpaca-origami");
+      origami.classList.add("girasoles-origami");
       origami.innerHTML = `
-      <div class="alpaca-container">
-        <div class="alpaca-circle">
-          <svg class="alpaca-circulo" viewBox="0 0 100 100">
-            <circle class="alpaca-circulo-animado" cx="50" cy="50" r="45"></circle>
+      <div class="girasoles-container">
+        <div class="girasoles-circle">
+          <svg class="girasoles-circulo" viewBox="0 0 100 100">
+            <circle class="girasoles-circulo-animado" cx="50" cy="50" r="45"></circle>
           </svg>
-          <img class="alpaca-role alpaca-streamer" src="https://i.postimg.cc/T112f9BN/alpaca.png"></div><div class="alpaca-ori-dots"><div class="alpaca-dot"></div><div class="alpaca-dot"></div><div class="alpaca-dot"></div></div><div class="alpaca-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="alpaca-luna">
+          <img class="girasoles-role girasoles-streamer" src="https://i.postimg.cc/T112f9BN/girasoles.png"></div><div class="girasoles-ori-dots"><div class="girasoles-dot"></div><div class="girasoles-dot"></div><div class="girasoles-dot"></div></div><div class="girasoles-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="girasoles-luna">
         </div>
       </div>
       `;
       const mainContainer = document.createElement("div");
-      mainContainer.innerText = "Alpaca";
-      mainContainer.classList.add("alpaca-main-container");
+      mainContainer.innerText = "Girasoles";
+      mainContainer.classList.add("girasoles-main-container");
       mainContainer.innerHTML = `
-      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="alpaca-brillo">
-      <div class="alpaca-username-info-container">
-        <div class="alpaca-prons-text alpaca-pronouns" style="display: flex;">
-          <span class="alpaca-prons alpaca-prons-pink">he/him</span>
+      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="girasoles-brillo">
+      <div class="girasoles-username-info-container">
+        <div class="girasoles-prons-text girasoles-pronouns" style="display: flex;">
+          <span class="girasoles-prons girasoles-prons-pink">he/him</span>
         </div>
-        <div class="alpaca-username-info">
-          <span class="alpaca-username-badges" style="display: none;">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
+        <div class="girasoles-username-info">
+          <span class="girasoles-username-badges" style="display: none;">
+            <img class="girasoles-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
+            <img class="girasoles-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
           </span>
-          <span class="alpaca-capitalize-user">Lordkaito_</span>
+          <span class="girasoles-capitalize-user">Lordkaito_</span>
         </div>
       </div>
-      <div class="alpaca-message-container alpaca-pink">
-          <div class="alpaca-bigcontainer">
-            <div class="alpaca-dots-container">
-              <div class="alpaca-dots">
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
+      <div class="girasoles-message-container girasoles-pink">
+          <div class="girasoles-bigcontainer">
+            <div class="girasoles-dots-container">
+              <div class="girasoles-dots">
+                <div class="girasoles-dot"></div>
+                <div class="girasoles-dot"></div>
+                <div class="girasoles-dot"></div>
               </div>
             </div>
-            <div class="alpaca-circless">
-              <svg class="alpaca-circulo" viewBox="0 0 100 100">
-                <circle class="alpaca-circulo-animado alpaca-yellow" cx="50" cy="50" r="20">
+            <div class="girasoles-circless">
+              <svg class="girasoles-circulo" viewBox="0 0 100 100">
+                <circle class="girasoles-circulo-animado girasoles-yellow" cx="50" cy="50" r="20">
                 </circle>
               </svg>
               <img src="https://i.postimg.cc/431XcqgF/corachikito.png">
             </div>
           </div>
-          <div class="alpaca-message-icon-container">
-            <div class="alpaca-rendered-text alpaca-text-color alpaca-streamer-text">
-              <p class="alpaca-text">${
+          <div class="girasoles-message-icon-container">
+            <div class="girasoles-rendered-text girasoles-text-color girasoles-streamer-text">
+              <p class="girasoles-text">${
                 customMessage == "" ? selectRandomMessage() : customMessage
               }</p>
             </div>
@@ -93,13 +93,13 @@ const Alpaca: React.FC<AlpacaProps> = () => {
 
     async createEventContainer() {
       let eventContainer = await super.createMainEvent();
-      eventContainer.classList.add("alpaca-event-container");
+      eventContainer.classList.add("girasoles-event-container");
       eventContainer.innerHTML = `
-      <div class="alpaca-fungi-container">
-        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="alpaca-moon">
-        <div class="alpaca-event-and-name-container">
-          <p class="alpaca-event-text">HI</p>
-          <p class="alpaca-event-name">${this.text}</p>
+      <div class="girasoles-fungi-container">
+        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="girasoles-moon">
+        <div class="girasoles-event-and-name-container">
+          <p class="girasoles-event-text">HI</p>
+          <p class="girasoles-event-name">${this.text}</p>
         </div>
       </div>`;
       return eventContainer;
@@ -124,7 +124,7 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       customMessage
     );
     let main = await MessageEvent.inits();
-    let container = document.querySelector(".alpaca-widget");
+    let container = document.querySelector(".girasoles-widget");
     container?.appendChild(main);
     main.scrollIntoView({ behavior: "smooth" });
   };
@@ -141,13 +141,13 @@ const Alpaca: React.FC<AlpacaProps> = () => {
       <Navbar />
 
       <div>
-        <h1>Alpaca</h1>
+        <h1>Girasoles</h1>
       </div>
       <div className="main-container">
         {/* <div className="container"></div> */}
         <div className="container">
           <div className="emulatedMenu">
-            <ul className="alpaca-emulation-menu">
+            <ul className="emulation-menu">
               <li
                 className="emulation-button"
                 onClick={() => handleClick(events.subscriber)}
@@ -186,11 +186,11 @@ const Alpaca: React.FC<AlpacaProps> = () => {
               placeholder="Type a message"
             />
           </div>
-          <div className="alpaca-widget"></div>
+          <div className="girasoles-widget"></div>
         </div>
       </div>
     </>
   );
 };
 
-export default Alpaca;
+export default Girasoles;

@@ -871,4 +871,4 @@ let chats = {
   },
 };
 
-export default chats;
+export { chats };
