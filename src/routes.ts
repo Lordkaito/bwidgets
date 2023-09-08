@@ -1,54 +1,60 @@
-import Navbar from "./components/navbar";
-import Widget from "./components/widget";
-import WidgetsPage from "./pages/Widgets";
 import Cereza from "./components/chats/cereza";
 import Customizable from "./components/chats/customizable";
 import Girasoles from "./components/chats/girasoles";
 import Margaritas from "./components/chats/margaritas";
 import Mario from "./components/chats/mario";
 import Tulipanes from "./components/chats/tulipanes";
-import Alpaca from "./components/chats/alpaca";
-
+import Sleepy from "./components/chats/sleepy";
+import Rainbow from "./components/chats/rainbow";
+import cherry from "./assets/images/cherry.webp";
+import daisy from "./assets/images/daisy.webp";
+import sunflower from "./assets/images/sunflower.webp";
+import tulip from "./assets/images/tulip.webp";
+import rainbow from "./assets/images/rainbow.webp";
+import sleepychat from "./assets/images/sleepy.webp";
 const routesToChatComponents = [
   {
     id: 1,
     component: Cereza,
     name: "Cereza Chat",
     hasEvents: { status: false },
+    image: cherry,
+    url: "https://www.etsy.com/es/listing/1547426989/chat-widget-for-twitch-custom-chat?click_key=3bdd9eb951eb6272c80df91317c155dba6059e8f%3A1547426989&click_sum=3eed6b8b&ref=shop_home_active_7&crt=1&sts=1",
   },
   {
     id: 2,
-    component: Customizable,
-    name: "Customizable Chat",
-    hasEvents: { status: false },
-  },
-  {
-    id: 3,
     component: Girasoles,
     name: "Girasoles Chat",
     hasEvents: { status: false },
+    image: sunflower,
   },
   {
-    id: 4,
+    id: 3,
     component: Margaritas,
     name: "Margaritas Chat",
     hasEvents: { status: false },
+    image: daisy,
   },
   {
-    id: 5,
+    id: 4,
     component: Tulipanes,
     name: "Tulipanes Chat",
     hasEvents: { status: false },
+    image: tulip,
   },
-  { id: 6, component: Mario, name: "Mario Chat", hasEvents: { status: false } },
   {
-    id: 7,
-    component: Alpaca,
-    name: "Alpaca Chat",
-    hasEvents: {
-      status: true,
-      events: ["message", "tip", "cheer", "follower", "subscriber"],
-    },
+    id: 5,
+    component: Rainbow,
+    name: "Rainbow Chat",
+    hasEvents: { status: false },
+    image: rainbow,
+  },
+  {
+    id: 6,
+    component: Sleepy,
+    name: "Sleepy Chat",
+    hasEvents: { status: false },
+    image: sleepychat,
   },
 ];
 
