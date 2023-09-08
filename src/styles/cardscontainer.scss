@@ -1,5 +1,4 @@
 .cards-container {
-  border: 1px solid red;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,6 +7,6 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   /* border: 1px solid blue; */
 }

@@ -1,18 +1,18 @@
-import Navbar from "../../components/navbar";
+import Navbar from "../navbar";
 import { useParams } from "react-router-dom";
-import "../../styles/alpaca.scss";
+// import "../../styles/rainbow.scss";
 import { useEffect, useRef, useState } from "react";
 import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
-interface AlpacaProps {
+interface SleepyProps {
   hasEvents: {}
 }
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Alpaca: React.FC<AlpacaProps> = (hasEvents) => {
-  class AlpacaMessage extends MessageClass {
+const Sleepy: React.FC<SleepyProps> = (hasEvents) => {
+  class SleepyMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
     }
@@ -45,7 +45,7 @@ const Alpaca: React.FC<AlpacaProps> = (hasEvents) => {
       </div>
       `;
       const mainContainer = document.createElement("div");
-      mainContainer.innerText = "Alpaca";
+      mainContainer.innerText = "Sleepy";
       mainContainer.classList.add("alpaca-main-container");
       mainContainer.innerHTML = `
       <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="alpaca-brillo">
@@ -120,7 +120,7 @@ const Alpaca: React.FC<AlpacaProps> = (hasEvents) => {
   };
 
   const handleClick = async (event: any) => {
-    let MessageEvent = new AlpacaMessage(
+    let MessageEvent = new SleepyMessage(
       event.event,
       event.listener,
       customMessage
@@ -143,7 +143,7 @@ const Alpaca: React.FC<AlpacaProps> = (hasEvents) => {
       <Navbar />
 
       <div>
-        <h1>Alpaca</h1>
+        <h1>Sleepy</h1>
       </div>
       <div className="main-container">
         {/* <div className="container"></div> */}
@@ -195,4 +195,4 @@ const Alpaca: React.FC<AlpacaProps> = (hasEvents) => {
   );
 };
 
-export default Alpaca;
+export default Sleepy;

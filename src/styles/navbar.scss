@@ -1,12 +1,51 @@
 .nav {
-  background-color: red;
+  background-color: #923499;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   ul {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    width: 100%;
+    padding: 5px 5px;
     height: 4rem;
+    div {
+      background-color: pink;
+      border-radius: 3px;
+      color: white;
+      padding: 5px 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      &:hover {
+        background-color: palevioletred;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+
+  .logo {
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    font-size: 2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
 }

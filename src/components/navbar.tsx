@@ -5,6 +5,9 @@ interface NavbarProps {}
 const Navbar: React.FC<NavbarProps> = () => {
   return (
     <nav className="nav">
+      <div className="logo">
+        <Link to="/">BWidgets</Link>
+      </div>
       <ul>
         <div>
           <Link to="/">Homepage</Link>
