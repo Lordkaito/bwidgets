@@ -1,4 +1,4 @@
-.cereza-widget {
+.rainbow-widget {
   border: 10px solid #ccc;
   height: 50rem;
   width: 55rem;
@@ -66,49 +66,66 @@
   }
 }
 
-  $message-color: white;
-  $message-color-2: #f94865;
-  $message-background-color: #fff5ed;
-  $message-border-color: #7bb87e;
-  $user-color: #f94865;
-  $user-background-color: white;
-  $user-border-color: #e6e6e6;
-  $user-shadow: rgba(56, 56, 56, 0.65) 0.1em 0.1em 0.5em;
-  $pronouns-color: blue;
-  $pronouns-background-color: #ffffff;
-  $pronouns-border-color: #e6e6e6;
-  $pronouns-shadow-color: rgba(120, 120, 120, 0.38);
-  $mods-background-color: #d1cfb4;
-  $mods-message-border: #fff3eb;
-  $event-background-color: rgba(155, 179, 142, 0.5);
-  $event-shadow-color: #a38c79;
-  $event-color: #fef9fd;
+:root {
+  --message-color: white;
+  --message-background-color: #fff5ed;
+  --message-border-color: #7bb87e;
+  --user-color: red;
+  --user-background-color: white;
+  --user-border-color: #e6e6e6;
+  /* --user-shadow: rgba(56, 56, 56, .65) 0.1em 0.1em 0.5em; */
+  --pronouns-color: blue;
+  --pronouns-background-color: #ffffff;
+  --pronouns-border-color: #e6e6e6;
+  --pronouns-shadow-color: rgba(120, 120, 120, 0.38);
+  --mods-background-color: #d1cfb4;
+  --mods-message-border: #fff3eb;
+  --event-background-color: rgba(155, 179, 142, 0.5);
+  --event-shadow-color: #a38c79;
+  --event-color: #fef9fd;
+}
 
-.cereza-scale-up {
+.rainbow-scale-up {
   transform: scale(1.1);
   transition: transform 0.2s;
 }
 
-.cereza-scale-down {
+.rainbow-scale-down {
   transform: scale(0);
   transition: transform 0.2s;
 }
 
-.cereza-emotes {
+.rainbow-emotes {
   width: 4.375rem;
   vertical-align: middle;
 }
 
-.cereza-super-main-container {
+main {
+  overflow: hidden;
+  max-height: 1080px;
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-left: 5rem;
+  /* z-index: 1; */
+}
+
+.rainbow-super-main-container {
   display: flex;
   align-items: center;
   animation-name: slideMessage;
   animation-duration: 1s;
   animation-fill-mode: forwards;
   padding: 0 1rem;
+  /* transform-style: preserve-3d; */
 }
 
-.cereza-main-container {
+.rainbow-main-container {
   max-width: 37.5rem;
   margin-bottom: 1.875rem;
   position: relative;
@@ -116,14 +133,68 @@
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
+  /* left: 1.875rem; */
   width: 100%;
-  border-radius: 50px;
-  border: 5px solid #eb6967;
-  background: rgba(255, 255, 255, 0.8);
+  border-radius: 40px;
+  background: linear-gradient(180deg, #85dbd5, #e0c58c);
   z-index: 1 !important;
 }
 
-.cereza-username-info-container {
+.rainbow-main-container::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  /* border: 5px solid transparent; */
+  background-color: pink;
+  z-index: -2;
+  transition: border;
+  border-radius: 40px;
+}
+
+.rainbow-red::before {
+  background-color: #ff879e;
+}
+
+.rainbow-orange::before {
+  background-color: #ffb891;
+}
+
+.rainbow-yellow::before {
+  background-color: #ffd99d;
+}
+
+.rainbow-green::before {
+  background-color: #8ee282;
+}
+
+.rainbow-blue::before {
+  background-color: #70e7df;
+}
+
+.rainbow-purple::before {
+  background-color: #bb9cdf;
+}
+
+/* .main-container::after {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  border: double 7px transparent;
+  background-image: linear-gradient(white, white),
+    radial-gradient(at bottom, #97e1d8, #e3cd92);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  z-index: -1;
+} */
+
+.rainbow-username-info-container {
   display: grid;
   grid-template-columns: 1fr 1fr 9fr;
   grid-template-rows: 1fr;
@@ -136,7 +207,7 @@
   padding-left: 0.5rem;
 }
 
-.cereza-username-info {
+.rainbow-username-info {
   width: fit-content;
   border-radius: 1.25rem;
   text-align: center;
@@ -145,21 +216,21 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  box-shadow: $user-shadow;
+  /* box-shadow: var(--user-shadow); */
   position: relative;
-  background-color: $user-background-color;
+  background-color: var(--user-background-color);
 }
 
-.cereza-flower {
+.rainbow-flower {
   position: absolute;
-  bottom: -1.3rem;
+  bottom: -0.5rem;
   left: -1.5rem;
   height: 64px;
   width: 64px;
   transform: scale(0.8);
 }
 
-.cereza-leafs-container {
+.rainbow-leafs-container {
   position: absolute;
   right: 0.6rem;
   bottom: 0.3rem;
@@ -170,19 +241,19 @@
   place-content: center;
 }
 
-.cereza-username-badges {
+.rainbow-username-badges {
   display: flex;
   gap: 5px;
 }
 
-.cereza-badges-img {
+.rainbow-badges-img {
   background-color: transparent;
   width: 1.125rem;
   height: 1.125rem;
 }
 
-.cereza-capitalize-user {
-  color: $user-color;
+.rainbow-capitalize-user {
+  color: var(--user-color);
   font-weight: bold;
   font-size: 1.35rem;
   display: inline-block;
@@ -192,61 +263,66 @@
   text-overflow: ellipsis;
 }
 
-.cereza-message-container {
-  padding-top: 1rem;
+.rainbow-message-container {
+  padding-top: .5rem;
+  /* padding-bottom: 0.7rem; */
   flex-grow: 1;
   overflow: hidden;
-  margin-bottom: 1.25rem;
+  margin-bottom: calc(1.25rem / 2)
 }
 
-.cereza-message-icon-container {
+.rainbow-message-icon-container {
   display: flex;
   flex-grow: 1;
   align-items: center;
   gap: 0.625rem;
+  /* margin-top: 0.625rem; */
 }
 
-.cereza-text {
+.rainbow-text {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.cereza-rendered-text {
+.rainbow-rendered-text {
   word-wrap: break-word;
   display: inline-block;
   min-width: 20rem;
   max-width: 31.25rem;
-  color: $message-color-2;
+  color: var(--message-color);
   white-space: normal;
   margin-right: 0.625rem;
-  padding-top: 0.9rem;
+  /* margin-left: 5rem; */
+  padding-top: 1.25rem;
   padding-right: 2rem;
   padding-left: 4rem;
   animation: twinkleText 0.5 1 forwards;
+  text-shadow: rgba(56, 56, 56, .65) 0.1em 0.1em 0.5em;
 }
 
-.cereza-pronouns {
-  color: $pronouns-color;
-  position: absolute;
+.rainbow-pronouns {
+  color: var(--pronouns-color);
   font-size: 12px;
   text-transform: uppercase;
   text-align: center;
-  width: 6.25rem;
-  bottom: -0.6rem;
+  /* justify-self: right; */
+  /* margin-right: 2rem; */
+  /* position: absolute; */
+  bottom: 0;
+  /* left: 14rem; */
   z-index: 1;
   font-weight: 700;
 }
 
-.cereza-prons {
+.rainbow-prons {
   max-width: 100%;
   text-align: center;
-  background: $pronouns-background-color;
-  box-shadow: $user-shadow;
+  background: var(--pronouns-background-color);
   border-radius: 1.25rem;
   padding: 7px;
 }
 
-.cereza-separator {
+.rainbow-separator {
   background-color: transparent !important;
   border: none;
   justify-content: center;
@@ -261,16 +337,16 @@
   margin-left: 5px;
 }
 
-.cereza-emote img {
+.rainbow-emote img {
   max-width: 3.5rem;
   width: 100%;
 }
 
-.cereza-invert {
+.rainbow-invert {
   transform: scaleX(-1);
 }
 
-.cereza-event-container {
+.rainbow-event-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -288,7 +364,7 @@
   height: 1000px;
 }
 
-.cereza-event-name {
+.rainbow-event-name {
   max-width: 300px;
   height: 100%;
   top: 0;
@@ -297,47 +373,47 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  color: $event-color;
+  color: var(--event-color);
   letter-spacing: normal;
   font-size: 1.5rem;
   animation: showNames 0.5s ease-in-out forwards;
-  background-color: $event-background-color;
+  background-color: var(--event-background-color);
   padding: 3px 10px;
   border-radius: 40px;
-  text-shadow: 0 2px 0.2em $event-shadow-color;
+  text-shadow: 0 2px 0.2em var(--event-shadow-color);
 }
 
-.cereza-event-leafs-container-1,
-.cereza-event-leafs-container-2 {
+.rainbow-event-leafs-container-1,
+.rainbow-event-leafs-container-2 {
   height: 40px;
   width: 40px;
   display: grid;
   place-content: center;
 }
 
-.cereza-event-leafs-container-1 img,
-.cereza-event-leafs-container-2 img {
+.rainbow-event-leafs-container-1 img,
+.rainbow-event-leafs-container-2 img {
   height: 37px;
   width: 40px;
   transform: scale(0.65);
 }
 
-.cereza-event-leafs-container-1 img {
+.rainbow-event-leafs-container-1 img {
   animation: showLeftFungi 0.5s ease-in-out forwards;
 }
 
-.cereza-event-leafs-container-2 img {
+.rainbow-event-leafs-container-2 img {
   order: 2;
   transition: none;
   transform: rotateY(180deg);
   animation: showRightFungi 0.5s ease-in-out forwards;
 }
 
-.cereza-event-leafs-container-2 {
+.rainbow-event-leafs-container-2 {
   order: 2;
 }
 
-.cereza-role-container {
+.rainbow-role-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,12 +421,13 @@
   height: 40px;
 }
 
-.cereza-role {
+.rainbow-role {
   width: 40px;
   height: 40px;
+  /* transform: scale(0.65); */
 }
 
-.cereza-fungi-container {
+.rainbow-fungi-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -452,16 +529,19 @@
   0% {
     transform: scale(0);
     transform-origin: bottom center;
+    /* transform-style: preserve-3d; */
   }
 
   50% {
     transform: scale(110%);
     transform-origin: bottom center;
+    /* transform-style: preserve-3d; */
   }
 
   100% {
     transform: scale(100%);
     transform-origin: bottom center;
+    /* transform-style: preserve-3d; */
   }
 }
 

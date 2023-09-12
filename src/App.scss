@@ -5,13 +5,19 @@
   border: none;
 }
 
+html {
+  background-color: #eee;
+}
+
 .main-container {
   // border: 1px solid blue;
   display: flex;
   justify-content: center;
 }
 
-
+#root {
+  overflow: hidden;
+}
 
 .container {
   // background-color: red;

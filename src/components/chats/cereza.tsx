@@ -115,6 +115,12 @@ const Cereza: React.FC<CerezaProps> = ({ hasEvents, eventsToEmulate }) => {
     }
   };
 
+  const renderEvents = () => {
+    console.log(eventsToEmulate)
+    // eventsToEmulate.map((event: any) => {});
+    return "a";
+  };
+
   return (
     <>
       <Navbar />
@@ -125,7 +131,7 @@ const Cereza: React.FC<CerezaProps> = ({ hasEvents, eventsToEmulate }) => {
         <div className="container">
           <div className="emulatedMenu">
             <ul className="emulation-menu">
-              {hasEvents ? (
+              {/* {hasEvents ? (
                 <>
                   <li
                     className="emulation-button"
@@ -159,6 +165,16 @@ const Cereza: React.FC<CerezaProps> = ({ hasEvents, eventsToEmulate }) => {
                 >
                   Emulate Message
                 </li>
+              )} */}
+              {hasEvents ? (
+                renderEvents()
+              ) : (
+                <li
+                  className="emulation-button"
+                  onClick={() => handleClick(events.message)}
+                >
+                  Emulate Message
+                </li>
               )}
             </ul>
             <input
@@ -171,6 +187,7 @@ const Cereza: React.FC<CerezaProps> = ({ hasEvents, eventsToEmulate }) => {
               type="color"
               name="Background color"
               onChange={handleBackgroundColor}
+              value={"#618298"}
             />
           </div>
           <div className="cereza-widget"></div>
