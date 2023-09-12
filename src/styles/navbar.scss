@@ -1,8 +1,11 @@
+@import "variables.scss";
+
 .nav {
-  background-color: #923499;
+  background-color: $tertiary-color;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: static;
   ul {
     display: flex;
     align-items: center;
@@ -11,7 +14,6 @@
     padding: 5px 5px;
     height: 4rem;
     div {
-      background-color: pink;
       border-radius: 3px;
       color: white;
       padding: 5px 5px;
@@ -21,7 +23,7 @@
       font-size: 16px;
       cursor: pointer;
       &:hover {
-        background-color: palevioletred;
+        background-color: $primary-color;
       }
       a {
         text-decoration: none;

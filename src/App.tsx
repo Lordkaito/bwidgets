@@ -13,11 +13,12 @@ const App: React.FC<AppProps> = ({ id }) => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         {routesToChatComponents.map((item, index): any => {
+          console.log(item.eventsToEmulate)
           return (
             <Route
               key={index}
               path={`/widget/${item.id}`}
-              element={<item.component hasEvents={item.hasEvents.status} eventsToEmulate={item.hasEvents} />}
+              element={<item.component hasEvents={item.hasEvents} eventsToEmulate={item.eventsToEmulate} />}
             />
           );
         })}

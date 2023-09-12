@@ -1,18 +1,19 @@
 import Navbar from "../navbar";
 import { useParams } from "react-router-dom";
-// import "../../styles/rainbow.scss";
+import "../../styles/rainbow.scss";
 import { useEffect, useRef, useState } from "react";
 import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
 interface RainbowProps {
-  hasEvents: {}
+  hasEvents: boolean;
+  eventsToEmulate: string[] | never[];
 }
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
 const Rainbow: React.FC<RainbowProps> = (hasEvents) => {
-  class AlpacaMessage extends MessageClass {
+  class RainbowMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
     }
@@ -29,65 +30,59 @@ const Rainbow: React.FC<RainbowProps> = (hasEvents) => {
       // let event = this.event;
       // let listener = this.listener;
       let superMain = await super.createMainContainerElement();
-      superMain.classList.add("alpaca-super-main-container");
+      superMain.classList.add("rainbow-super-main-container");
       let containerToRender = document.createElement("div");
-      containerToRender.classList.add("alpaca-container-to-render");
+      containerToRender.classList.add("rainbow-container-to-render");
       let origami = document.createElement("div");
-      origami.classList.add("alpaca-origami");
+      origami.classList.add("rainbow-origami");
       origami.innerHTML = `
-      <div class="alpaca-container">
-        <div class="alpaca-circle">
-          <svg class="alpaca-circulo" viewBox="0 0 100 100">
-            <circle class="alpaca-circulo-animado" cx="50" cy="50" r="45"></circle>
+      <div class="rainbow-container">
+        <div class="rainbow-circle">
+          <svg class="rainbow-circulo" viewBox="0 0 100 100">
+            <circle class="rainbow-circulo-animado" cx="50" cy="50" r="45"></circle>
           </svg>
-          <img class="alpaca-role alpaca-streamer" src="https://i.postimg.cc/T112f9BN/alpaca.png"></div><div class="alpaca-ori-dots"><div class="alpaca-dot"></div><div class="alpaca-dot"></div><div class="alpaca-dot"></div></div><div class="alpaca-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="alpaca-luna">
+          <img class="rainbow-role rainbow-streamer" src="https://i.postimg.cc/T112f9BN/alpaca.png"></div><div class="rainbow-ori-dots"><div class="rainbow-dot"></div><div class="rainbow-dot"></div><div class="rainbow-dot"></div></div><div class="rainbow-ori-container"><img src="https://i.postimg.cc/bN28gsPn/luni.png" class="rainbow-luna">
         </div>
       </div>
       `;
       const mainContainer = document.createElement("div");
       mainContainer.innerText = "Rainbow";
-      mainContainer.classList.add("alpaca-main-container");
+      mainContainer.classList.add("rainbow-main-container");
       mainContainer.innerHTML = `
-      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="alpaca-brillo">
-      <div class="alpaca-username-info-container">
-        <div class="alpaca-prons-text alpaca-pronouns" style="display: flex;">
-          <span class="alpaca-prons alpaca-prons-pink">he/him</span>
-        </div>
-        <div class="alpaca-username-info">
-          <span class="alpaca-username-badges" style="display: none;">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
-            <img class="alpaca-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
+      <img src="https://i.postimg.cc/W12nD9TL/arco-iris-4.png" class="rainbow-flower">
+      <div class="rainbow-username-info-container">
+        <span class="rainbow-role-container">
+          <svg class="rainbow-role" style="height: 36px;">
+            <!--?xml version="1.0" encoding="utf-8"?-->
+            <svg width="40px" height="40px" viewBox="0 0 22 28" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                  <path fill="none" d="M0 0h24v24H0z"></path>
+                  <path stroke="white" stroke-width="3" fill="#fb6183" d="M4.873 3h14.254a1 1 0 0 1 .809.412l3.823 5.256a.5.5 0 0 1-.037.633L12.367 21.602a.5.5 0 0 1-.734 0L.278 9.302a.5.5 0 0 1-.037-.634l3.823-5.256A1 1 0 0 1 4.873 3z"></path>
+              </g>
+            </svg>
+          </svg>
+        </span>
+        <div class="rainbow-username-info">
+          <span class="rainbow-username-badges">
+            <img class="rainbow-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
+            <img class="rainbow-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
           </span>
-          <span class="alpaca-capitalize-user">Lordkaito_</span>
+          <span class="rainbow-capitalize-user" style="color: rgb(251, 97, 131);">Lordkaitdo_</span>
         </div>
       </div>
-      <div class="alpaca-message-container alpaca-pink">
-          <div class="alpaca-bigcontainer">
-            <div class="alpaca-dots-container">
-              <div class="alpaca-dots">
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
-                <div class="alpaca-dot"></div>
-              </div>
-            </div>
-            <div class="alpaca-circless">
-              <svg class="alpaca-circulo" viewBox="0 0 100 100">
-                <circle class="alpaca-circulo-animado alpaca-yellow" cx="50" cy="50" r="20">
-                </circle>
-              </svg>
-              <img src="https://i.postimg.cc/431XcqgF/corachikito.png">
-            </div>
+      <div class="rainbow-message-container">
+        <div class="rainbow-message-icon-container">
+          <div class="rainbow-rendered-text vip-text">
+            <p class="rainbow-text">${
+              customMessage == "" ? selectRandomMessage() : customMessage
+            }</p>
           </div>
-          <div class="alpaca-message-icon-container">
-            <div class="alpaca-rendered-text alpaca-text-color alpaca-streamer-text">
-              <p class="alpaca-text">${
-                customMessage == "" ? selectRandomMessage() : customMessage
-              }</p>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="rainbow-pronouns" style="opacity: 0;">
+        <span class="rainbow-prons" style="color: rgb(251, 97, 131);"></span>
       </div>
       `;
-      superMain.appendChild(origami);
       superMain.appendChild(mainContainer);
 
       return superMain;
@@ -95,13 +90,13 @@ const Rainbow: React.FC<RainbowProps> = (hasEvents) => {
 
     async createEventContainer() {
       let eventContainer = await super.createMainEvent();
-      eventContainer.classList.add("alpaca-event-container");
+      eventContainer.classList.add("rainbow-event-container");
       eventContainer.innerHTML = `
-      <div class="alpaca-fungi-container">
-        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="alpaca-moon">
-        <div class="alpaca-event-and-name-container">
-          <p class="alpaca-event-text">HI</p>
-          <p class="alpaca-event-name">${this.text}</p>
+      <div class="rainbow-fungi-container">
+        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="rainbow-moon">
+        <div class="rainbow-event-and-name-container">
+          <p class="rainbow-event-text">HI</p>
+          <p class="rainbow-event-name">${this.text}</p>
         </div>
       </div>`;
       return eventContainer;
@@ -120,15 +115,16 @@ const Rainbow: React.FC<RainbowProps> = (hasEvents) => {
   };
 
   const handleClick = async (event: any) => {
-    let MessageEvent = new AlpacaMessage(
+    let MessageEvent = new RainbowMessage(
       event.event,
       event.listener,
       customMessage
     );
     let main = await MessageEvent.inits();
-    let container = document.querySelector(".alpaca-widget");
+    let container = document.querySelector(".rainbow-widget");
     container?.appendChild(main);
     main.scrollIntoView({ behavior: "smooth" });
+    setCustomMessage("");
   };
 
   const handleKeyUp = (e: any) => {
@@ -150,36 +146,41 @@ const Rainbow: React.FC<RainbowProps> = (hasEvents) => {
         <div className="container">
           <div className="emulatedMenu">
             <ul className="emulation-menu">
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.subscriber)}
-              >
-                Emulate Emulate Sub
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.follower)}
-              >
-                Emulate Follow
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.cheer)}
-              >
-                Emulate Cheer
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.tip)}
-              >
-                Emulate Tip
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.message)}
-              >
-                Emulate Message
-              </li>
+              {hasEvents ? (
+                <>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.subscriber)}
+                  >
+                    Emulate Sub
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.follower)}
+                  >
+                    Emulate Follow
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.cheer)}
+                  >
+                    Emulate Cheer
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.tip)}
+                  >
+                    Emulate Tip
+                  </li>
+                </>
+              ) : (
+                <li
+                  className="emulation-button"
+                  onClick={() => handleClick(events.message)}
+                >
+                  Emulate Message
+                </li>
+              )}
             </ul>
             <input
               onChange={(e) => setCustomMessage(e.target.value)}
@@ -188,7 +189,7 @@ const Rainbow: React.FC<RainbowProps> = (hasEvents) => {
               placeholder="Type a message"
             />
           </div>
-          <div className="alpaca-widget"></div>
+          <div className="rainbow-widget"></div>
         </div>
       </div>
     </>

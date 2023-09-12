@@ -3,10 +3,26 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  // max-height: 80%;
+  // max-width: 80%;
+  overflow: auto;
+  width: 100%;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* border: 1px solid blue; */
+}
+
+@media screen and (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+    height: 100%;
+  }
+
+  .cards-container {
+    padding-top: 2rem;
+    margin-bottom: 1rem;
+  }
 }

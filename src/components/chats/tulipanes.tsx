@@ -7,11 +7,15 @@ import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
 interface TulipanesProps {
-  hasEvents: {};
+  hasEvents: boolean;
+  eventsToEmulate: string[] | never[];
 }
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Tulipanes: React.FC<TulipanesProps> = (hasEvents) => {
+const Tulipanes: React.FC<TulipanesProps> = ({
+  hasEvents,
+  eventsToEmulate,
+}) => {
   class TulipanesMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
@@ -45,49 +49,36 @@ const Tulipanes: React.FC<TulipanesProps> = (hasEvents) => {
       </div>
       `;
       const mainContainer = document.createElement("div");
-      mainContainer.innerText = "Tulipanes";
+      mainContainer.innerText = "tulipanes";
       mainContainer.classList.add("tulipanes-main-container");
       mainContainer.innerHTML = `
-      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="tulipanes-brillo">
+      <img src="https://i.postimg.cc/vTyvwLZ6/mariii.png" class="tulipanes-flower">
       <div class="tulipanes-username-info-container">
-        <div class="tulipanes-prons-text tulipanes-pronouns" style="display: flex;">
-          <span class="tulipanes-prons tulipanes-prons-pink">he/him</span>
-        </div>
-        <div class="tulipanes-username-info">
+        <span class="tulipanes-role-container">
+          <img class="tulipanes-role" src="https://i.postimg.cc/ZnBqPXDz/tulipan-viewer.png">
+        </span>
+        <div class="tulipanes-username-info";">
           <span class="tulipanes-username-badges" style="display: none;">
             <img class="tulipanes-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
             <img class="tulipanes-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
           </span>
-          <span class="tulipanes-capitalize-user">Lordkaito_</span>
+          <span class="tulipanes-capitalize-user" style="color: rgb(255, 255, 255);">Lordkaito_</span>
+        </div>
+        <div class="tulipanes-pronouns" style="display: block;">
+          <span class="tulipanes-prons" style="color: rgb(255, 255, 255); background-color: rgb(106, 75, 53);">he/him</span>
         </div>
       </div>
-      <div class="tulipanes-message-container tulipanes-pink">
-          <div class="tulipanes-bigcontainer">
-            <div class="tulipanes-dots-container">
-              <div class="tulipanes-dots">
-                <div class="tulipanes-dot"></div>
-                <div class="tulipanes-dot"></div>
-                <div class="tulipanes-dot"></div>
-              </div>
-            </div>
-            <div class="tulipanes-circless">
-              <svg class="tulipanes-circulo" viewBox="0 0 100 100">
-                <circle class="tulipanes-circulo-animado tulipanes-yellow" cx="50" cy="50" r="20">
-                </circle>
-              </svg>
-              <img src="https://i.postimg.cc/431XcqgF/corachikito.png">
-            </div>
+      <div class="tulipanes-message-container">
+        <div class="tulipanes-message-icon-container">
+          <div class="tulipanes-rendered-text streamer-text">
+            <p class="tulipanes-text">${
+              customMessage == "" ? selectRandomMessage() : customMessage
+            }</p>
           </div>
-          <div class="tulipanes-message-icon-container">
-            <div class="tulipanes-rendered-text tulipanes-text-color tulipanes-streamer-text">
-              <p class="tulipanes-text">${
-                customMessage == "" ? selectRandomMessage() : customMessage
-              }</p>
-            </div>
-          </div>
+        </div>
       </div>
       `;
-      superMain.appendChild(origami);
+      // superMain.appendChild(origami);
       superMain.appendChild(mainContainer);
 
       return superMain;
@@ -98,11 +89,13 @@ const Tulipanes: React.FC<TulipanesProps> = (hasEvents) => {
       eventContainer.classList.add("tulipanes-event-container");
       eventContainer.innerHTML = `
       <div class="tulipanes-fungi-container">
-        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="tulipanes-moon">
-        <div class="tulipanes-event-and-name-container">
-          <p class="tulipanes-event-text">HI</p>
-          <p class="tulipanes-event-name">${this.text}</p>
+        <div class="tulipanes-event-leafs-container-1">
+          <img src="https://i.postimg.cc/Wz7wNFdY/hojii.png" class="tulipanes-fungi">
         </div>
+        <div class="tulipanes-event-leafs-container-2">
+          <img src="https://i.postimg.cc/Wz7wNFdY/hojii.png" class="tulipanes-fungi">
+        </div>
+        <p class="tulipanes-event-name">Archwayco just followed!</p>
       </div>`;
       return eventContainer;
     }
@@ -129,6 +122,7 @@ const Tulipanes: React.FC<TulipanesProps> = (hasEvents) => {
     let container = document.querySelector(".tulipanes-widget");
     container?.appendChild(main);
     main.scrollIntoView({ behavior: "smooth" });
+    setCustomMessage("");
   };
 
   const handleKeyUp = (e: any) => {
@@ -150,36 +144,41 @@ const Tulipanes: React.FC<TulipanesProps> = (hasEvents) => {
         <div className="container">
           <div className="emulatedMenu">
             <ul className="emulation-menu">
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.subscriber)}
-              >
-                Emulate Emulate Sub
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.follower)}
-              >
-                Emulate Follow
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.cheer)}
-              >
-                Emulate Cheer
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.tip)}
-              >
-                Emulate Tip
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.message)}
-              >
-                Emulate Message
-              </li>
+              {hasEvents ? (
+                <>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.subscriber)}
+                  >
+                    Emulate Sub
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.follower)}
+                  >
+                    Emulate Follow
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.cheer)}
+                  >
+                    Emulate Cheer
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.tip)}
+                  >
+                    Emulate Tip
+                  </li>
+                </>
+              ) : (
+                <li
+                  className="emulation-button"
+                  onClick={() => handleClick(events.message)}
+                >
+                  Emulate Message
+                </li>
+              )}
             </ul>
             <input
               onChange={(e) => setCustomMessage(e.target.value)}

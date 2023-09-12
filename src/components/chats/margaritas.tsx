@@ -6,13 +6,17 @@ import MessageClass from "../../helpers/messageClass";
 import { nicknames, session, events } from "../libs/simulation";
 import randomMessages from "../../helpers/randomMessages";
 import React from "react";
-interface AlpacaProps {
-  hasEvents: {};
+interface MargaritasProps {
+  hasEvents: boolean;
+  eventsToEmulate: string[] | never[];
 }
 // widgets will receive id for the widget itself, comming from the button, comming from the card
 
-const Margaritas: React.FC<AlpacaProps> = (hasEvents) => {
-  class AlpacaMessage extends MessageClass {
+const Margaritas: React.FC<MargaritasProps> = ({
+  hasEvents,
+  eventsToEmulate,
+}) => {
+  class MargaritaMessage extends MessageClass {
     constructor(event: any, listener: string, custom: string) {
       super(event, listener);
     }
@@ -45,49 +49,36 @@ const Margaritas: React.FC<AlpacaProps> = (hasEvents) => {
       </div>
       `;
       const mainContainer = document.createElement("div");
-      mainContainer.innerText = "Margaritas";
+      mainContainer.innerText = "margaritas";
       mainContainer.classList.add("margaritas-main-container");
       mainContainer.innerHTML = `
-      <img src="https://i.postimg.cc/rpT8Kcvr/bribri.png" class="margaritas-brillo">
+      <img src="https://i.postimg.cc/vTyvwLZ6/mariii.png" class="margaritas-flower">
       <div class="margaritas-username-info-container">
-        <div class="margaritas-prons-text margaritas-pronouns" style="display: flex;">
-          <span class="margaritas-prons margaritas-prons-pink">he/him</span>
-        </div>
-        <div class="margaritas-username-info">
+        <span class="margaritas-role-container">
+          <img class="margaritas-role" src="https://i.postimg.cc/NfgM14YK/margaritaaa.png">
+        </span>
+        <div class="margaritas-username-info";">
           <span class="margaritas-username-badges" style="display: none;">
             <img class="margaritas-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/3">
             <img class="margaritas-badges-img" src="https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/3">
           </span>
-          <span class="margaritas-capitalize-user">Lordkaito_</span>
+          <span class="margaritas-capitalize-user" style="color: rgb(255, 255, 255);">Lordkaito_</span>
+        </div>
+        <div class="margaritas-pronouns" style="display: block;">
+          <span class="margaritas-prons" style="color: rgb(255, 255, 255); background-color: rgb(106, 75, 53);">he/him</span>
         </div>
       </div>
-      <div class="margaritas-message-container margaritas-pink">
-          <div class="margaritas-bigcontainer">
-            <div class="margaritas-dots-container">
-              <div class="margaritas-dots">
-                <div class="margaritas-dot"></div>
-                <div class="margaritas-dot"></div>
-                <div class="margaritas-dot"></div>
-              </div>
-            </div>
-            <div class="margaritas-circless">
-              <svg class="margaritas-circulo" viewBox="0 0 100 100">
-                <circle class="margaritas-circulo-animado margaritas-yellow" cx="50" cy="50" r="20">
-                </circle>
-              </svg>
-              <img src="https://i.postimg.cc/431XcqgF/corachikito.png">
-            </div>
+      <div class="margaritas-message-container">
+        <div class="margaritas-message-icon-container">
+          <div class="margaritas-rendered-text streamer-text">
+            <p class="margaritas-text">${
+              customMessage == "" ? selectRandomMessage() : customMessage
+            }</p>
           </div>
-          <div class="margaritas-message-icon-container">
-            <div class="margaritas-rendered-text margaritas-text-color margaritas-streamer-text">
-              <p class="margaritas-text">${
-                customMessage == "" ? selectRandomMessage() : customMessage
-              }</p>
-            </div>
-          </div>
+        </div>
       </div>
       `;
-      superMain.appendChild(origami);
+      // superMain.appendChild(origami);
       superMain.appendChild(mainContainer);
 
       return superMain;
@@ -98,11 +89,13 @@ const Margaritas: React.FC<AlpacaProps> = (hasEvents) => {
       eventContainer.classList.add("margaritas-event-container");
       eventContainer.innerHTML = `
       <div class="margaritas-fungi-container">
-        <img src="https://i.postimg.cc/N0QcQDH8/lunnube.png" class="margaritas-moon">
-        <div class="margaritas-event-and-name-container">
-          <p class="margaritas-event-text">HI</p>
-          <p class="margaritas-event-name">${this.text}</p>
+        <div class="margaritas-event-leafs-container-1">
+          <img src="https://i.postimg.cc/Wz7wNFdY/hojii.png" class="margaritas-fungi">
         </div>
+        <div class="margaritas-event-leafs-container-2">
+          <img src="https://i.postimg.cc/Wz7wNFdY/hojii.png" class="margaritas-fungi">
+        </div>
+        <p class="margaritas-event-name">Archwayco just followed!</p>
       </div>`;
       return eventContainer;
     }
@@ -120,7 +113,7 @@ const Margaritas: React.FC<AlpacaProps> = (hasEvents) => {
   };
 
   const handleClick = async (event: any) => {
-    let MessageEvent = new AlpacaMessage(
+    let MessageEvent = new MargaritaMessage(
       event.event,
       event.listener,
       customMessage
@@ -129,6 +122,7 @@ const Margaritas: React.FC<AlpacaProps> = (hasEvents) => {
     let container = document.querySelector(".margaritas-widget");
     container?.appendChild(main);
     main.scrollIntoView({ behavior: "smooth" });
+    setCustomMessage("");
   };
 
   const handleKeyUp = (e: any) => {
@@ -150,36 +144,41 @@ const Margaritas: React.FC<AlpacaProps> = (hasEvents) => {
         <div className="container">
           <div className="emulatedMenu">
             <ul className="emulation-menu">
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.subscriber)}
-              >
-                Emulate Emulate Sub
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.follower)}
-              >
-                Emulate Follow
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.cheer)}
-              >
-                Emulate Cheer
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.tip)}
-              >
-                Emulate Tip
-              </li>
-              <li
-                className="emulation-button"
-                onClick={() => handleClick(events.message)}
-              >
-                Emulate Message
-              </li>
+              {hasEvents ? (
+                <>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.subscriber)}
+                  >
+                    Emulate Sub
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.follower)}
+                  >
+                    Emulate Follow
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.cheer)}
+                  >
+                    Emulate Cheer
+                  </li>
+                  <li
+                    className="emulation-button"
+                    onClick={() => handleClick(events.tip)}
+                  >
+                    Emulate Tip
+                  </li>
+                </>
+              ) : (
+                <li
+                  className="emulation-button"
+                  onClick={() => handleClick(events.message)}
+                >
+                  Emulate Message
+                </li>
+              )}
             </ul>
             <input
               onChange={(e) => setCustomMessage(e.target.value)}
